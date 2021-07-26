@@ -55,15 +55,19 @@ namespace ByteBank
         }
 
 
-        public bool Sacar(double valor)
+        public void Sacar(double valor)
         {
+            if (valor <= 0)
+            {
+                throw new ArgumentException("Valor inválido para saque", nameof(valor));
+            }
+
             if (_saldo < valor)
             {
-                return false;
+                throw new SaldoInsuficienteException(_saldo, valor);
             }
 
             _saldo -= valor;
-            return true;
         }
 
         public void Depositar(double valor)
