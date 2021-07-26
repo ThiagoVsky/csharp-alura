@@ -1,6 +1,4 @@
-﻿// using _05_ByteBank;
-
-using System;
+﻿using System;
 
 namespace ByteBank
 {
@@ -72,20 +70,20 @@ namespace ByteBank
 
         public void Depositar(double valor)
         {
+            if (valor <= 0) { throw new ArgumentException("Valor para depósito inválido.", nameof(valor)); }
             _saldo += valor;
         }
 
 
-        public bool Transferir(double valor, ContaCorrente contaDestino)
+        public void Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (_saldo < valor)
+            if (valor <= 0)
             {
-                return false;
+                throw new ArgumentException("Valor para transferência inválido.", nameof(valor));
             }
 
-            _saldo -= valor;
+            Sacar(valor);
             contaDestino.Depositar(valor);
-            return true;
         }
     }
 }

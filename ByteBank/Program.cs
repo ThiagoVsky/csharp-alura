@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ByteBank
 {
@@ -13,9 +9,10 @@ namespace ByteBank
             try
             {
                 ContaCorrente conta = new ContaCorrente(1251, 541301);
+                ContaCorrente conta2 = new ContaCorrente(125, 541301);
                 conta.Depositar(50);
                 Console.WriteLine(conta.Saldo);
-                conta.Sacar(-500);
+                conta.Transferir(50, conta2);
             }
             catch (ArgumentException e)
             {
